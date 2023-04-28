@@ -3,9 +3,12 @@ import { ScrollView, StyleSheet, Button, Text, TextInput, TouchableOpacity, View
 import { FAB } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { db } from '../Firebase';
-import { getDoc, doc, deleteDoc  } from 'firebase/firestore';
+import { getDoc, doc, deleteDoc, updateDoc  } from 'firebase/firestore';
 
 export default function Item({ navigation, route}) {
+
+
+  const [descc, setDescc] = useState('');
 
     const [data, setData] = useState(Object);
     getData = () => {
@@ -24,6 +27,16 @@ export default function Item({ navigation, route}) {
       navigation.navigate("Home");
     };
 
+    const updateData = async() => {
+      await updateDoc(doc(db, "Data", route.params),{
+        description: {descc}
+      });
+      console.log(data.Title);
+      navigation.navigate("Home");
+    };
+    
+    
+
 
 
     useEffect( () => {
@@ -37,9 +50,16 @@ export default function Item({ navigation, route}) {
       <Button style={styles.button} title='Go Back' onPress={() => {navigation.goBack()}}/>
     <View style={styles.container}>
       <Text style={styles.title}>{data.Title}</Text>
-      <TextInput style={styles.description}>{data.Description}</TextInput>
+      <TextInput 
+        onChangeText={setDescc}
+         value={descc}
+        placeholder= {data.Description}
+    
+         style={styles.description}>
+          
+      </TextInput>
       <View style={{flexDirection: 'row', gap: 50}}>
-      <Button style={styles.buttonRow} title='Edit' onPress={() => {navigation.goBack()}}/>
+      <Button style={styles.buttonRow} title='Edit' onPress={updateData}/>
       <Button style={styles.buttonRow} color='red'  title='Delete' onPress={delData}/>
       </View>
     </View>
