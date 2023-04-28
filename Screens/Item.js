@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Button, Text, TextInput, TouchableOpacity, View
 import { FAB } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { db } from '../Firebase';
-import { getDoc, doc } from 'firebase/firestore';
+import { getDoc, doc, deleteDoc  } from 'firebase/firestore';
 
 export default function Item({ navigation, route}) {
 
@@ -17,6 +17,12 @@ export default function Item({ navigation, route}) {
             navigation.goBack();
         } );
     }
+
+    const delData = async() => {
+      await deleteDoc(doc(db, "Data", route.params));
+      console.log(data.Title);
+      navigation.navigate("Home");
+    };
 
 
 
@@ -34,7 +40,7 @@ export default function Item({ navigation, route}) {
       <TextInput style={styles.description}>{data.Description}</TextInput>
       <View style={{flexDirection: 'row', gap: 50}}>
       <Button style={styles.buttonRow} title='Edit' onPress={() => {navigation.goBack()}}/>
-      <Button style={styles.buttonRow} color='red'  title='Delete' onPress={() => {navigation.goBack()}}/>
+      <Button style={styles.buttonRow} color='red'  title='Delete' onPress={delData}/>
       </View>
     </View>
 
