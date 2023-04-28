@@ -29,16 +29,12 @@ export default function Item({ navigation, route}) {
 
     const updateData = async() => {
       await updateDoc(doc(db, "Data", route.params),{
-        description: {descc}
+        Description: descc
       });
       console.log(data.Title);
       navigation.navigate("Home");
     };
     
-    
-
-
-
     useEffect( () => {
         getData();
     }, [] )
@@ -54,7 +50,6 @@ export default function Item({ navigation, route}) {
         onChangeText={setDescc}
          value={descc}
         placeholder= {data.Description}
-    
          style={styles.description}>
           
       </TextInput>
