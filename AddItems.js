@@ -28,12 +28,12 @@ export default function AddItem({ navigation }) {
     return(
 
         <View style={styles.container}>
-        <Text style={styles.title}>ADD</Text>
+        <Text style={styles.title}>Fill Up Details</Text>
         <TextInput
           style={styles.input}
           onChangeText={setTitle}
           value={title}
-          placeholder="Title"
+          placeholder="Task Name"
         />
         
         <TextInput
@@ -43,7 +43,7 @@ export default function AddItem({ navigation }) {
           placeholder="Description"
         />
         <TouchableOpacity style={styles.button} onPress={addItems00}>
-          <Text style={styles.buttonText}>Add</Text>
+          <Text style={styles.buttonText}>Continue</Text>
         </TouchableOpacity>
       </View>
 
@@ -53,8 +53,9 @@ export default function AddItem({ navigation }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
+      paddingTop: 50,
       alignItems: 'center',
+      justifyContent: 'center',
       backgroundColor: '#fff',
     },
     title: {

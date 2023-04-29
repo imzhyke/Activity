@@ -37,15 +37,9 @@ export default function RegisterPage({ navigation }) {
   return (
     <SafeAreaView>
     <ScrollView>
-      <Text style={styles.title}>Item List</Text>
+      <Text style={styles.title}>Task List</Text>
 
-      <FAB title="Oten" style={{position:'absolute'}} 
-      onPress={() => signOut(Auth).then(() => {
-        navigation.goBack();
-      }).catch((error) => {
-        console.log(error);
-      }) }/>
-      
+     
       {dataList.map((datas, index) => {
         return (<View key={index}><Block data={datas}/></View> );
       })}

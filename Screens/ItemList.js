@@ -42,26 +42,29 @@ export default function RegisterPage({ navigation }) {
   } 
   return (
     <SafeAreaView style={{flex:1}}>
-    <Text style={styles.title}>Item List</Text>
+    <Text style={styles.title}>Task List</Text>
 
-    <FAB title="Sign Out" 
+    {/* <FAB title="Sign Out" 
       onPress={() => signOut(Auth).then(() => {
         navigation.goBack();
       }).catch((error) => {
         console.log(error);
-      }) }/>
+      }) }/> */}
 
 
       
 
             
     <ScrollView>
-    <Button 
-              title="Add Item"
+    <View style={{paddingHorizontal: 20}}>
+    <Button style={styles.buttonText}
+              title="+ Add New Task"
+              color='#68d144' 
               onPress={() => {
                 navigation.navigate("AddItem");
               }}
             />  
+    </View>
       {dataList.map((datas, index) => {
         return (<Block key={index} data={datas} nav = {navigation}/>);
       })}
@@ -74,7 +77,7 @@ export default function RegisterPage({ navigation }) {
 }
 const styles = StyleSheet.create({
   block: {
-    backgroundColor: '#00aabb',
+    backgroundColor: '#44d198',
     padding: 20,
     alignSelf: 'center',
     borderRadius: 10,
@@ -99,6 +102,11 @@ const styles = StyleSheet.create({
     fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 18,
   },
   input: {
     borderWidth: 1,

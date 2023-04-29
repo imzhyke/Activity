@@ -25,6 +25,7 @@ export default function Item({ navigation, route}) {
       await deleteDoc(doc(db, "Data", route.params));
       console.log(data.Title);
       navigation.navigate("Home");
+
     };
 
     const updateData = async() => {
@@ -42,23 +43,29 @@ export default function Item({ navigation, route}) {
     console.log(data);
   return (
     <SafeAreaView>
-      
-      <Button style={styles.button} title='Go Back' onPress={() => {navigation.goBack()}}/>
+    
     <View style={styles.container}>
       <Text style={styles.title}>{data.Title}</Text>
       <TextInput 
         onChangeText={setDescc}
-         value={descc}
+        value={descc}
         placeholder= {data.Description}
          style={styles.description}>
           
       </TextInput>
-      <View style={{flexDirection: 'row', gap: 50}}>
+      <View style={{paddingHorizontal: 20}}>
       <Button style={styles.buttonRow} title='Edit' onPress={updateData}/>
+      </View>
+      <View style={{paddingHorizontal: 20, marginTop: 10}}>
       <Button style={styles.buttonRow} color='red'  title='Delete' onPress={delData}/>
       </View>
-    </View>
+      <View style={{paddingHorizontal: 20, marginTop: 200}}>
+      <Button style={styles.button} color='violet' title='Go Back' onPress={() => {navigation.goBack()}}/>
 
+      </View>
+
+    </View>
+   
     </SafeAreaView>
   );
 }
@@ -67,28 +74,26 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         paddingLeft: 20,
         paddingRight: 20,
-        borderRadius: 200,
+        borderRadius: 10,
         width: '80%',
         height: '10%',
-        marginTop: 10,
         marginBottom: 20,
+        marginLeft: 30,
     },
   container: {
-    alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
   },
   title: {
     fontSize: 36,
     fontWeight: 'bold',
-    marginBottom: 50,
+    marginBottom: 20,
     textAlign: 'center',
   },
   button: {
     backgroundColor: 'blue',
     borderRadius: 5,
-    padding: 10,
-    marginTop: 10,
+    marginBottom: 30,
     width: '80%',
   },
   buttonRow: {
